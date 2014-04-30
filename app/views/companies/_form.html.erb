@@ -1,56 +1,22 @@
-<%= form_for(@company) do |f| %>
-  <% if @company.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
-
-      <ul>
-      <% @company.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_area :address %>
-  </div>
-  <div class="field">
-    <%= f.label :services_offered %><br>
-    <%= f.text_field :services_offered %>
-  </div>
-  <div class="field">
-    <%= f.label :brand_offered %><br>
-    <%= f.text_field :brand_offered %>
-  </div>
-  <div class="field">
-    <%= f.label :licenses %><br>
-    <%= f.text_field :licenses %>
-  </div>
-  <div class="field">
-    <%= f.label :phones_number %><br>
-    <%= f.number_field :phones_number %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :category_id %><br>
-    <%= f.number_field :category_id %>
-  </div>
-  <div class="field">
-    <%= f.label :location_id %><br>
-    <%= f.number_field :location_id %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
+<%= simple_form_for(@company) do |f| %>
+<%= f.error_notification %>
+  <%= f.input :user_id ,as: :hidden , :value => current_user.id %>
+<table >
+  <tr>
+    <td><%= f.input :name %></td>
+    <td><%= f.input :address %></td>
+    <td><%= f.input :services_offered %></td>
+    <td><%= f.input :brand_offered %></td>
+    <td><%= f.input :licenses %></td>
+  </tr>
+  <tr>
+    <td><%= f.input :phones_number, as: :string %></td>
+    <td><%= f.input :description %></td>
+    <td><%= f.association :category, collection: Category.all, include_blank: true  %></td>
+    <td><%= f.association :location, collection: Location.all, include_blank: true %></td>
+  </tr>
+</table>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

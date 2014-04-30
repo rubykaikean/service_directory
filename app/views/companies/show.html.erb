@@ -37,18 +37,18 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @company.category_id %>
+  <%= @company.category.name %>
 </p>
 
 <p>
   <strong>Location:</strong>
-  <%= @company.location_id %>
+  <%= @company.location.name %>
 </p>
 
-<p>
+<!-- <p>
   <strong>User:</strong>
-  <%= @company.user_id %>
-</p>
+  <%#= @company.user_id %>
+</p> -->
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+<%= link_to 'Edit Company Profile', edit_company_path(@company), :class=>"btn" %>
+

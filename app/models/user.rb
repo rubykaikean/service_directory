@@ -3,4 +3,13 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+
+  after_create :create_user_id
+
+  def create_user_id
+  	company = Company.new
+  	company.user_id = id
+  	company.save
+  end
 end
