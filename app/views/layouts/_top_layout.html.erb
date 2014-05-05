@@ -1,0 +1,21 @@
+<div class="row-fluid header_bar navbar navbar-fixed-top main-theme"><!-- start header -->
+    <div class="navbar-inner">
+      <div class="container-fluid">        
+        <div class="nav-collapse pull-right">
+          <ul class="nav nav-pills">
+            <li><a href="<%= root_url %>">Home</a></li>
+            <li><a href="<%=  %>">empty 2</a></li>
+            <li><a href="<%= locations_path %>">Service Location</a></li>
+            <li><a href="<%= categories_path %>">Services Category</a></li>
+            <% if user_signed_in? %>
+              <li><%= link_to "Company Profile", company_path(current_user.id) %></li>
+              <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+            <% else %>
+              <!-- <li><a href="<%= new_user_session_path %>">Login</a></li> -->
+            <li><%= link_to "Login", new_user_session_path %></li>
+            <% end %>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div>
+    </div>
+  </div><!-- end header -->

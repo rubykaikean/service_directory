@@ -11,6 +11,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
+    @list_services = Service.where("company_id = ? ", current_user.id)
   end
 
   # GET /companies/new
@@ -71,6 +72,6 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:name, :address, :services_offered, :brand_offered, :licenses, :phones_number, :description, :category_id, :location_id, :user_id)
+      params.require(:company).permit(:name, :address, :services_offered, :brand_offered, :licenses, :phones_number, :phones_number_2, :phones_number_3, :description, :category_id, :location_id, :user_id)
     end
 end

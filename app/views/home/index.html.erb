@@ -1,4 +1,41 @@
 <h3>Welcome to home page</h3>
+<br>
+<%#= current_user.id %>
+<% unless user_signed_in? %>
+	<%= search_form_for @q, :url => root_path do |f| %>
+			<div>
+				<a><h4>Company Name:</h4><%= f.text_field :name_cont %></a>
+			  <a><%= f.submit "submit", :class => "btn" %></a>
+			</div>
+		<h3>List of company services</h3>
 
+		<table class="table table-bordered">
+			<% @list_company.each_with_index do |p , index| %>
+			<tr>
+				<td><%= index + 1 %></td>
+				<td>
+					<p>Company Name :<%= p.name %>,
+					Licenses: <%= p.licenses %>,
+					Category: <%= p.category.name rescue'-' %></p>
+					<p>Address :<%= p.address %></p>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+	<% end %>
 
-<%#= link_to "sign in", new_user_session_path %>
+<% else %>
+		<table class="table table-bordered">
+			<% @list_company.each_with_index do |p , index| %>
+			<tr>
+				<td><%= index + 1 %></td>
+				<td>
+					<p>Company Name :<%= p.name rescue'-' %>,
+					Licenses: <%= p.licenses rescue'-'%>,
+					Category: <%= p.category.name rescue'-' %></p>
+					<p>Address :<%= p.address rescue'-'%></p>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+<% end %>

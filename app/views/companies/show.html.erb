@@ -1,54 +1,46 @@
 <p id="notice"><%= notice %></p>
+<h3><u>Company Background Info</u></h3>
+<table class="table table-borderless">
+  <tr>
+    <td><strong>Name : </strong><u><%= @company.name rescue'-' %></u></td>
+    <td><strong>Service Offered: </strong><u><%= @company.services_offered rescue'-'%></u></td>
+    <td><strong>Brand Offered: </strong><u><%= @company.brand_offered rescue'-'%></u></td>
+  </tr>
+  <tr>
+    <td><strong>Licenses: </strong><u><%= @company.licenses rescue'-'%></u></td>
+    <td><strong>Phone Number: </strong><u><%= @company.phones_number rescue'-'%></u> / 
+      <u><%= @company.phones_number_2 rescue'-'%></u> / 
+      <u><%= @company.phones_number_3 rescue'-'%></u></td>
+    <td><strong>Category: </strong><u><%= @company.category.name rescue'-'%></u></td>
+  </tr>
+  <tr>
+    <td><strong>Description: </strong><u><%= @company.description rescue'-'%></u></td>
+    <td colspan="2"><strong>Location: </strong><u><%= @company.location.name rescue'-'%></u></td>
+  </tr>
+</table>
 
-<p>
-  <strong>Name:</strong>
-  <%= @company.name %>
-</p>
+<table class="table table-bordered">
+  
 
-<p>
-  <strong>Address:</strong>
-  <%= @company.address %>
-</p>
-
-<p>
-  <strong>Services offered:</strong>
-  <%= @company.services_offered %>
-</p>
-
-<p>
-  <strong>Brand offered:</strong>
-  <%= @company.brand_offered %>
-</p>
-
-<p>
-  <strong>Licenses:</strong>
-  <%= @company.licenses %>
-</p>
-
-<p>
-  <strong>Phones number:</strong>
-  <%= @company.phones_number %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @company.description %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @company.category.name %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @company.location.name %>
-</p>
-
-<!-- <p>
-  <strong>User:</strong>
-  <%#= @company.user_id %>
-</p> -->
-
-<%= link_to 'Edit Company Profile', edit_company_path(@company), :class=>"btn" %>
+  <tr>
+    <th>No.</th>
+    <th colspan="5">Services</th>
+  </tr>
+  <% @list_services.each_with_index do |p , index| %>
+  <tr>
+    <td><%= index + 1 %></td>
+    <td>
+      <p>Service Name :<u><%= p.name %></u></p>
+      <p><!-- Service Type : --><%#= p.service_type rescue'-' %>
+      Service Location :<u><%= p.service_location rescue'-'%></u> ,
+      Delivery Time :<u><%= p.delivery_time rescue'-'%></u></p>
+      <p>Description :<u><%= p.description %></u></p>
+      <%= link_to "Edit Service", edit_service_path(p.id, :company_id => @company.id) , :class=>"btn btn-mini btn-warning"%>
+    </td>
+  </tr>
+  
+  <% end %>
+</table>
+<%= link_to "Add Service", new_service_path(:company_id => @company.id), :class=>"btn btn-danger" %>
+<%= link_to 'Edit Company Profile', edit_company_path(@company), :class=>"btn btn-info" %>
 

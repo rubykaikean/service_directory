@@ -1,0 +1,18 @@
+<%= simple_form_for(@service) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :company_id, as: :hidden ,:input_html => {:value => params[:company_id] } %>
+    <%#= f.association :category, collection: Category.all, include_blank: true  %>
+    <%#= f.input :service_type %>
+    <%= f.input :service_period, :label => "Service Period(Hour)" %>
+    <%= f.input :service_location, :label => "Service Location" %>
+    <%= f.input :delivery_time, :label => "Delivery Time(Hour)"%>
+    <%= f.input :description %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

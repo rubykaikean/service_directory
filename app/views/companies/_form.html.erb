@@ -11,6 +11,10 @@
   </tr>
   <tr>
     <td><%= f.input :phones_number, as: :string %></td>
+    <td><%= f.input :phones_number_2, as: :string %></td>
+    <td><%= f.input :phones_number_3, as: :string %></td>
+  </tr>
+  <tr>
     <td><%= f.input :description %></td>
     <td><%= f.association :category, collection: Category.all, include_blank: true  %></td>
     <td><%= f.association :location, collection: Location.all, include_blank: true %></td>
@@ -18,6 +22,6 @@
 </table>
   
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Update Company Profile", :class =>"btn" %>
   </div>
 <% end %>

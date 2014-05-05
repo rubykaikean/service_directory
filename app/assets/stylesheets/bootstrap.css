@@ -2036,6 +2036,22 @@ table {
   border-top: 2px solid #dddddd;
 }
 
+.table-borderless {
+  background-color: #aaa;
+  border: 0px;
+  border-collapse: separate;
+  *border-collapse: collapse;
+  border-left: 0;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+.table-borderless th,
+.table-borderless td {
+  border: 0px;
+}
+
 .table .table {
   background-color: #ffffff;
 }
