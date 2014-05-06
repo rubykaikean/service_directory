@@ -4,8 +4,10 @@
 <% unless user_signed_in? %>
 	<%= search_form_for @q, :url => root_path do |f| %>
 			<div>
-				<a><h4>Company Name:</h4><%= f.text_field :name_cont %></a>
-			  <a><%= f.submit "submit", :class => "btn" %></a>
+				<p>
+					<h4>Search:</h4><%= f.text_field :name_or_licenses_or_address_or_category_name_or_location_name_cont, :placeholder => "Search Any Field", :input_html => {:maxlength => 25 } %>
+					<%= f.submit "submit", :class => "btn" %>
+				</p>
 			</div>
 		<h3>List of company services</h3>
 
@@ -16,8 +18,11 @@
 				<td>
 					<p>Company Name :<%= p.name %>,
 					Licenses: <%= p.licenses %>,
-					Category: <%= p.category.name rescue'-' %></p>
-					<p>Address :<%= p.address %></p>
+					Category: <%= p.category.name rescue'-' %>,
+					Location: <%= p.location.name rescue'-' %></p>
+					<p>Address:<%= p.address %></p>
+					<p>Services: <%= link_to "Detail" , company_services_detail_home_path(:company_id => p.id), :class => "btn btn-info btn-mini" %> 
+						<%#= link_to "Detail", company_services_detail_home_path(:company_id => p.id), :class=>"btn btn-info btn-mini" %>
 				</td>
 			</tr>
 			<% end %>
@@ -32,10 +37,15 @@
 				<td>
 					<p>Company Name :<%= p.name rescue'-' %>,
 					Licenses: <%= p.licenses rescue'-'%>,
-					Category: <%= p.category.name rescue'-' %></p>
-					<p>Address :<%= p.address rescue'-'%></p>
+					Category: <%= p.category.name rescue'-' %>,
+					Location: <%= p.location.name rescue'-' %></p>
+					<p>Address: <%= p.address rescue'-'%></p>
+					<p>Services: <%= link_to "Detail", company_services_detail_home_path(:company_id => p.id), :class => "btn btn-info btn-mini" %></p>
 				</td>
+
 			</tr>
 			<% end %>
 		</table>
 <% end %>
+
+

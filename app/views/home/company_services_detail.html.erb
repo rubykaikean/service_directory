@@ -1,0 +1,47 @@
+<div>
+<h3>Show Detail Services - <u><%= @list_company.name %></u></h3>
+	<table class="table table-bordered">
+		<tr>
+			<td>Major Services Offered: <u><%= @list_company.services_offered %></u> </td>
+			<td>Major Brand Offered: <u><%= @list_company.brand_offered %></u></td>
+			<td>Licenses : <u><%= @list_company.licenses %></u></td>
+		</tr>
+		<tr>
+			<td>Phone Number: <u><%= @list_company.phones_number %></u> / 
+												<u><%= @list_company.phones_number_2 %></u>	 / 
+												<u><%= @list_company.phones_number_3 %></u>
+
+			</td>
+			<td>Category : <u><%= @list_company.category.name rescue'-' %></u></td>
+			<td>Location : <u><%= @list_comapny.location.name rescue'-' %></u></td>
+		</tr>
+	</table>
+</div>
+
+<div>
+<h3>List of services</h3>
+<div style="float:right;"><%= link_to "Back" , :back , :class=>"btn" %></div>
+
+</div>
+
+<% @list_company.services.each_with_index do |p , index| %>
+<table class="table table-bordered">
+	<tr>
+		<th>No.</th>
+		<th>Services</th>
+	</tr>
+	<tr>
+		<td><%= index + 1 %></td>
+		<td>
+			<p>Services Name : <%= p.name %></p>
+			<p>	Services Location : <%= p.service_location %>,
+			 		Delivery time(hour): <%= p.delivery_time %>
+			</p>
+			<p>
+				Description : <%= p.description %>
+			</p>
+		</td>
+	</tr>
+</table>
+
+<% end %>

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :locations
 
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations"}
   resources :users
 
   resources :companies
@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+  match "company_services_detail/home", to: "home#company_services_detail", :via => :get
+  match '/:id' => "shortener/shortened_urls#show", via: [:get]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

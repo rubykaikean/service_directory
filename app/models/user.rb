@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
 
   after_create :create_user_id
 
+  JOB_POSTER = 1
+  JOB_SEEKER = 2
+
   def create_user_id
   	company = Company.new
   	company.user_id = id

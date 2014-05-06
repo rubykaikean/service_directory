@@ -31,6 +31,7 @@ gem 'simple_form'
 gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1"
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
+gem 'shortener'
 
 # Use unicorn as the app server
 # gem 'unicorn'
