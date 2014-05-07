@@ -8,13 +8,21 @@
               <% if current_user.is_admin == true %>
                 <li><a href="<%= locations_path %>">Service Location</a></li>
                 <li><a href="<%= categories_path %>">Services Category</a></li>
-              <% end %>          
-              <li><%= link_to "Company Profile", company_path(current_user.id) %></li>
+              <% end %>
+                <% if current_user.user_type == 1 %>
+                  <li>
+                    <%= link_to "Company Profile", company_path(current_user.id) %>
+                  </li>
+                <% else %>
+                  <li>
+                    <%= link_to "Personal Profile" %>
+                  </li>
+                <% end %>
               <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
               <li><%= current_user.email %></li>
             <% else %>
               <!-- <li><a href="<%= new_user_session_path %>">Login</a></li> -->
-            <li><%= link_to "Login", new_user_session_path %></li>
+            <li><%= link_to "Login/Registration", new_user_session_path %></li>
             <% end %>
           </ul>
         </div><!-- /.nav-collapse -->
